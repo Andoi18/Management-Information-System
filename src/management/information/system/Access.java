@@ -49,8 +49,6 @@ public class Access extends javax.swing.JFrame {
 
         access_tabpane.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
-        access_login_panel.setBackground(new java.awt.Color(60, 63, 100));
-
         access_login_lbl.setText("Login");
 
         access_login_passwordF.setText("jPasswordField1");
@@ -124,9 +122,7 @@ public class Access extends javax.swing.JFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        access_tabpane.addTab("tab1", access_login_panel);
-
-        access_register_panel.setBackground(new java.awt.Color(60, 63, 100));
+        access_tabpane.addTab("Login", access_login_panel);
 
         access_register_lbl.setText("Register");
 
@@ -190,7 +186,7 @@ public class Access extends javax.swing.JFrame {
         access_register_panelLayout.setVerticalGroup(
             access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(access_register_panelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(56, 56, 56)
                 .addComponent(access_register_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(access_register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +194,7 @@ public class Access extends javax.swing.JFrame {
                 .addComponent(access_register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(access_register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(access_register_checkB1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(access_register_toLogin)
@@ -207,56 +203,52 @@ public class Access extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        access_tabpane.addTab("tab2", access_register_panel);
+        access_tabpane.addTab("Register", access_register_panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(access_tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+            .addComponent(access_tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addComponent(access_tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void access_login_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_passwordFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_access_login_passwordFActionPerformed
-
-    private void access_login_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_enterActionPerformed
-       new Main_Dashboard().setVisible(true);
-       this.dispose();
-    }//GEN-LAST:event_access_login_enterActionPerformed
-
-    private void access_register_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_register_passwordFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_access_register_passwordFActionPerformed
-
-    private void access_login_enter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_enter1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_access_login_enter1ActionPerformed
+    private void access_register_toLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_access_register_toLoginMouseClicked
+        updateAccessState();
+    }//GEN-LAST:event_access_register_toLoginMouseClicked
 
     private void access_register_confirmPasswordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_register_confirmPasswordFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_access_register_confirmPasswordFActionPerformed
 
+    private void access_login_enter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_enter1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_access_login_enter1ActionPerformed
+
+    private void access_register_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_register_passwordFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_access_register_passwordFActionPerformed
+
     private void access_register_toRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_access_register_toRegisterMouseClicked
         updateAccessState();
     }//GEN-LAST:event_access_register_toRegisterMouseClicked
 
-    private void access_register_toLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_access_register_toLoginMouseClicked
-        updateAccessState();
-    }//GEN-LAST:event_access_register_toLoginMouseClicked
+    private void access_login_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_enterActionPerformed
+        new Main_Dashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_access_login_enterActionPerformed
+
+    private void access_login_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_passwordFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_access_login_passwordFActionPerformed
 
     private void updateAccessState(){
         isLogin = !isLogin;
