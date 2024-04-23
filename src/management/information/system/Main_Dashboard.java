@@ -45,9 +45,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
         status_update_btn = new javax.swing.JButton();
         statusPnl_status_lbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        mainDashboard_admin_pnl = new javax.swing.JPanel();
+        employee_attendance = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         mainDashboard_profile_pnl = new javax.swing.JPanel();
         mainDashboard_settings_pnl = new javax.swing.JPanel();
+        mainDashboard_admin_pnl = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,48 +165,60 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         jLabel1.setText("Hello user!");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        employee_attendance.addTab("tab1", jScrollPane1);
+
         javax.swing.GroupLayout mainDashboard_employee_pnlLayout = new javax.swing.GroupLayout(mainDashboard_employee_pnl);
         mainDashboard_employee_pnl.setLayout(mainDashboard_employee_pnlLayout);
         mainDashboard_employee_pnlLayout.setHorizontalGroup(
             mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
-                        .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(employee_status_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
+                            .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(43, 43, 43)
+                            .addComponent(employee_status_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         mainDashboard_employee_pnlLayout.setVerticalGroup(
             mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainDashboard_employee_pnlLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(employee_status_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(33, 33, 33))
+                .addGap(18, 18, 18)
+                .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(319, 319, 319))
         );
 
         mainDashboard_tabbedPane.addTab("tab2", mainDashboard_employee_pnl);
-
-        mainDashboard_admin_pnl.setToolTipText("");
-
-        javax.swing.GroupLayout mainDashboard_admin_pnlLayout = new javax.swing.GroupLayout(mainDashboard_admin_pnl);
-        mainDashboard_admin_pnl.setLayout(mainDashboard_admin_pnlLayout);
-        mainDashboard_admin_pnlLayout.setHorizontalGroup(
-            mainDashboard_admin_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 731, Short.MAX_VALUE)
-        );
-        mainDashboard_admin_pnlLayout.setVerticalGroup(
-            mainDashboard_admin_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
-        );
-
-        mainDashboard_tabbedPane.addTab("tab2", mainDashboard_admin_pnl);
 
         javax.swing.GroupLayout mainDashboard_profile_pnlLayout = new javax.swing.GroupLayout(mainDashboard_profile_pnl);
         mainDashboard_profile_pnl.setLayout(mainDashboard_profile_pnlLayout);
@@ -213,7 +228,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
         );
         mainDashboard_profile_pnlLayout.setVerticalGroup(
             mainDashboard_profile_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
 
         mainDashboard_tabbedPane.addTab("tab4", mainDashboard_profile_pnl);
@@ -226,10 +241,11 @@ public class Main_Dashboard extends javax.swing.JFrame {
         );
         mainDashboard_settings_pnlLayout.setVerticalGroup(
             mainDashboard_settings_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
 
         mainDashboard_tabbedPane.addTab("tab3", mainDashboard_settings_pnl);
+        mainDashboard_tabbedPane.addTab("tab5", mainDashboard_admin_pnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,9 +255,9 @@ public class Main_Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(mainDashboard_tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainDashboard_tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,12 +276,15 @@ public class Main_Dashboard extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane employee_attendance;
     private javax.swing.JLabel employee_displayTime;
     private javax.swing.JPanel employee_status_pnl;
     private javax.swing.JPanel employee_timeLog_pnl;
     private javax.swing.JButton employee_updateTime_btn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel mainDashboard_admin_pnl;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane mainDashboard_admin_pnl;
     private javax.swing.JPanel mainDashboard_employee_pnl;
     private javax.swing.JPanel mainDashboard_profile_pnl;
     private javax.swing.JPanel mainDashboard_settings_pnl;
