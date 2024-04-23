@@ -48,6 +48,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
         employee_attendance = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         mainDashboard_profile_pnl = new javax.swing.JPanel();
         mainDashboard_settings_pnl = new javax.swing.JPanel();
         mainDashboard_admin_pnl = new javax.swing.JScrollPane();
@@ -188,6 +189,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         employee_attendance.addTab("tab1", jScrollPane1);
 
+        jLabel2.setText("Week Attendance");
+
         javax.swing.GroupLayout mainDashboard_employee_pnlLayout = new javax.swing.GroupLayout(mainDashboard_employee_pnl);
         mainDashboard_employee_pnl.setLayout(mainDashboard_employee_pnlLayout);
         mainDashboard_employee_pnlLayout.setHorizontalGroup(
@@ -195,13 +198,14 @@ public class Main_Dashboard extends javax.swing.JFrame {
             .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
                             .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(43, 43, 43)
-                            .addComponent(employee_status_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(employee_status_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         mainDashboard_employee_pnlLayout.setVerticalGroup(
@@ -213,7 +217,9 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(employee_status_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(8, 8, 8)
                 .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(319, 319, 319))
         );
@@ -282,6 +288,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel employee_timeLog_pnl;
     private javax.swing.JButton employee_updateTime_btn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JScrollPane mainDashboard_admin_pnl;
