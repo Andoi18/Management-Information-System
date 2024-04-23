@@ -16,8 +16,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
     public Main_Dashboard() {
         initComponents();
         
-        db_connection conn = new db_connection();
-        conn.testConnection();
+        //db_connection conn = new db_connection();
+        //conn.testConnection();
     }
 
     /**
