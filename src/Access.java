@@ -16,7 +16,9 @@ public class Access extends javax.swing.JFrame {
      * Creates new form Access
      */
     public Access() {
-        initComponents(); 
+        initComponents();
+        
+        System.out.println("Hellow World");
     }
 
     /**
