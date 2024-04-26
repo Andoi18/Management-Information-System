@@ -46,19 +46,17 @@ public class Access extends javax.swing.JFrame {
         access_register_toLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         access_tabpane.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
         access_login_lbl.setText("Login");
 
-        access_login_passwordF.setText("jPasswordField1");
         access_login_passwordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 access_login_passwordFActionPerformed(evt);
             }
         });
-
-        access_login_usernameF.setText("jTextField1");
 
         access_login_enter.setText("Enter");
         access_login_enter.addActionListener(new java.awt.event.ActionListener() {
@@ -81,37 +79,33 @@ public class Access extends javax.swing.JFrame {
         access_login_panelLayout.setHorizontalGroup(
             access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, access_login_panelLayout.createSequentialGroup()
-                .addGap(0, 110, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, access_login_panelLayout.createSequentialGroup()
-                        .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(access_login_panelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(access_login_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(access_login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(access_login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(139, 139, 139))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, access_login_panelLayout.createSequentialGroup()
-                        .addComponent(access_register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106))))
+                    .addComponent(access_login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(access_login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(access_login_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(154, 154, 154))
             .addGroup(access_login_panelLayout.createSequentialGroup()
                 .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(access_login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(186, 186, 186)
+                        .addComponent(access_login_enter))
                     .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(access_login_enter)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(105, 105, 105)
+                        .addComponent(access_register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(access_login_panelLayout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(access_login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         access_login_panelLayout.setVerticalGroup(
             access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(access_login_panelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(63, 63, 63)
                 .addComponent(access_login_lbl)
                 .addGap(18, 18, 18)
                 .addComponent(access_login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(access_login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(access_login_checkB)
@@ -119,7 +113,7 @@ public class Access extends javax.swing.JFrame {
                 .addComponent(access_register_toRegister)
                 .addGap(18, 18, 18)
                 .addComponent(access_login_enter)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         access_tabpane.addTab("Login", access_login_panel);
