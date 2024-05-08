@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +18,8 @@ import javax.swing.JOptionPane;
  * @author Drew
  */
 public class db_connection {
+    GeneralFnc fnc = new GeneralFnc();
+    
     protected Connection conn = null;
     protected String url = "jdbc:mysql://localhost:3306/management_information_system?zeroDateTimeBehavior=CONVERT_TO_NULL";
     protected String user = "root";
@@ -36,29 +41,35 @@ public class db_connection {
     }
     
     public boolean register(String username, String pass){
+        Date d = new Date();
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = currentDateTime.format(formatter);
+        
          try (Connection connection = DriverManager.getConnection(url, user, pw)) {
+            String tempID;
+                
+            do{
+                tempID = Integer.toString(fnc.generateRandomID(10, Integer.toString(d.getYear() + 1900)));
+            }
+            while(existsInDb("users", "userID", tempID));
+            
+            
             String sql = "INSERT INTO `users`"
                     + "(`userID`, `username`, `password`, `admin`, `archived`, `active`, `datetimeCreated`) VALUES "
-                    + "('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]')";
-            try (Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(sql)) {
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("userID");
-                    String name = resultSet.getString("username");
-                    String password = resultSet.getString("password");
-                    //6System.out.println(name + " " + password + " "+ username + " " + pass);
-                    if(name.equals(username) && password.equals(pass)){
-                        return true;
-                    }
-                    return false;
+                    + "('"+ tempID +"', '"+ username +"','"+ pass +"','0','0','0','"+ formattedDateTime +"')";
+            try (Statement statement = connection.createStatement()){
+                int rowsInserted = statement.executeUpdate(sql);
+                if (rowsInserted > 0) {
+                    System.out.println("A new row has been inserted successfully.");
+                    return true;
                 }
+                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }
-        return false;
-    }
+        }    }
     
     
     public int login(String username, String pass){
@@ -84,9 +95,9 @@ public class db_connection {
         return 0;
     }
     
-    public boolean existsInDb(String table, String column, Object input){
+    public boolean existsInDb(String table, String column, String input){
          try (Connection connection = DriverManager.getConnection(url, user, pw)) {
-            String sql = "SELECT * FROM '"+ table +"' WHERE '"+ column +"'= \""+ input +"\"";
+            String sql = "SELECT * FROM "+ table +" WHERE "+ column +"= "+ input +"";
             try (Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql)) {
                 if (!resultSet.isBeforeFirst() ) {    
@@ -99,7 +110,6 @@ public class db_connection {
             return true;
         }
     }
-    
     
     public Object getUserData(int userID, String table, String column, Object output){
          try (Connection connection = DriverManager.getConnection(url, user, pw)) {

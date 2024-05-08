@@ -232,20 +232,25 @@ public class Access extends javax.swing.JFrame {
     }//GEN-LAST:event_register_confirmPasswordFActionPerformed
 
     private void register_enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_enterBtnActionPerformed
+        //PRECAUTIONS FOR REGISTER INPUT
         if(register_passwordF.getText().equals("") || register_usernameF.getText().equals("") || register_confirmPasswordF.getText().equals("")){
             JOptionPane.showMessageDialog(null,  "Please fill up all of the required fields", "",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+        if(register_usernameF.getText().length() < 3){
+            JOptionPane.showMessageDialog(null,  "Your username must contain atleast 3 characters", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(register_passwordF.getText().length() < 8){
+            JOptionPane.showMessageDialog(null,  "Your password must contain atleast 8 characters", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if(!register_passwordF.getText().equals(register_confirmPasswordF.getText())){
             JOptionPane.showMessageDialog(null,  "Passwords does not match", "",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         
-        if(register_passwordF.getText().length() < 8){
-            JOptionPane.showMessageDialog(null,  "Your password must contain atleast 8 characters", "",JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+        
         
         if(db.register(register_usernameF.getText(), register_passwordF.getText())){
             
