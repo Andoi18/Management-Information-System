@@ -4,6 +4,7 @@
  */
 
 
+
 /**
  *
  * @author Drew
@@ -13,11 +14,26 @@ public class Main_Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Main_Dashboard
      */
-    public Main_Dashboard() {
+    int userID;
+    
+    GeneralFnc employee = new GeneralFnc();
+    
+    public Main_Dashboard(int uID) {
         initComponents();
         
         //db_connection conn = new db_connection();
         //conn.testConnection();
+        userID = uID;
+        initializeData();
+    }
+    
+    //VARIABLES
+    boolean timeIn;
+    
+    private void initializeData(){
+        userLbl.setText("Welcome " + userID);
+        timeIn = false;
+        
     }
 
     /**
@@ -31,11 +47,10 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         mainDashboard_tabbedPane = new javax.swing.JTabbedPane();
         mainDashboard_employee_pnl = new javax.swing.JPanel();
-        employee_timeLog_pnl = new javax.swing.JPanel();
-        employee_displayTime = new javax.swing.JLabel();
-        timelog_timeIn_rb = new javax.swing.JRadioButton();
-        timelog_timeOut_rb = new javax.swing.JRadioButton();
-        employee_updateTime_btn = new javax.swing.JButton();
+        timeLog_pnl = new javax.swing.JPanel();
+        updateTimeIn_btn = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        timeLabel1 = new Components.TimeLabel();
         employee_status_pnl = new javax.swing.JPanel();
         status_lbl = new javax.swing.JLabel();
         status_available_rb = new javax.swing.JRadioButton();
@@ -44,7 +59,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
         statusPnl_status_textArea = new javax.swing.JTextArea();
         status_update_btn = new javax.swing.JButton();
         statusPnl_status_lbl = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        userLbl = new javax.swing.JLabel();
         employee_attendance = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -101,51 +116,48 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         mainDashboard_tabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        employee_displayTime.setText("8:30 am");
+        mainDashboard_employee_pnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        timelog_timeIn_rb.setText("Time-in");
-        timelog_timeIn_rb.addActionListener(new java.awt.event.ActionListener() {
+        updateTimeIn_btn.setText("Time-in");
+        updateTimeIn_btn.setToolTipText("");
+        updateTimeIn_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timelog_timeIn_rbActionPerformed(evt);
+                updateTimeIn_btnActionPerformed(evt);
             }
         });
 
-        timelog_timeOut_rb.setText("Time-out");
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Time-in / Time-out");
 
-        employee_updateTime_btn.setText("Enter");
+        javax.swing.GroupLayout timeLog_pnlLayout = new javax.swing.GroupLayout(timeLog_pnl);
+        timeLog_pnl.setLayout(timeLog_pnlLayout);
+        timeLog_pnlLayout.setHorizontalGroup(
+            timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(timeLog_pnlLayout.createSequentialGroup()
+                .addGroup(timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(timeLog_pnlLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(updateTimeIn_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(timeLog_pnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(timeLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        timeLog_pnlLayout.setVerticalGroup(
+            timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timeLog_pnlLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(timeLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(updateTimeIn_btn)
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
 
-        javax.swing.GroupLayout employee_timeLog_pnlLayout = new javax.swing.GroupLayout(employee_timeLog_pnl);
-        employee_timeLog_pnl.setLayout(employee_timeLog_pnlLayout);
-        employee_timeLog_pnlLayout.setHorizontalGroup(
-            employee_timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(employee_timeLog_pnlLayout.createSequentialGroup()
-                .addGroup(employee_timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(employee_timeLog_pnlLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(employee_updateTime_btn))
-                    .addGroup(employee_timeLog_pnlLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(employee_timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(timelog_timeIn_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timelog_timeOut_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(employee_timeLog_pnlLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(employee_displayTime, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
-        employee_timeLog_pnlLayout.setVerticalGroup(
-            employee_timeLog_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employee_timeLog_pnlLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(employee_displayTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(timelog_timeIn_rb)
-                .addGap(18, 18, 18)
-                .addComponent(timelog_timeOut_rb)
-                .addGap(31, 31, 31)
-                .addComponent(employee_updateTime_btn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        mainDashboard_employee_pnl.add(timeLog_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, 311));
 
         status_lbl.setText("Status");
 
@@ -177,18 +189,19 @@ public class Main_Dashboard extends javax.swing.JFrame {
                         .addComponent(status_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employee_status_pnlLayout.createSequentialGroup()
-                        .addGroup(employee_status_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(status_scrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, employee_status_pnlLayout.createSequentialGroup()
-                                .addComponent(status_available_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(status_notAvailable_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(status_scrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                         .addGap(23, 23, 23))
                     .addGroup(employee_status_pnlLayout.createSequentialGroup()
                         .addGroup(employee_status_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(status_update_btn)
                             .addComponent(statusPnl_status_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(employee_status_pnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(status_available_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(status_notAvailable_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         employee_status_pnlLayout.setVerticalGroup(
             employee_status_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +221,10 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Hello user!");
+        mainDashboard_employee_pnl.add(employee_status_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+
+        userLbl.setText("Hello user!");
+        mainDashboard_employee_pnl.add(userLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 15, 373, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,40 +246,10 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         employee_attendance.addTab("Date", jScrollPane1);
 
-        jLabel2.setText("Week Attendance");
+        mainDashboard_employee_pnl.add(employee_attendance, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 589, 96));
 
-        javax.swing.GroupLayout mainDashboard_employee_pnlLayout = new javax.swing.GroupLayout(mainDashboard_employee_pnl);
-        mainDashboard_employee_pnl.setLayout(mainDashboard_employee_pnlLayout);
-        mainDashboard_employee_pnlLayout.setHorizontalGroup(
-            mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(mainDashboard_employee_pnlLayout.createSequentialGroup()
-                            .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(43, 43, 43)
-                            .addComponent(employee_status_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        mainDashboard_employee_pnlLayout.setVerticalGroup(
-            mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainDashboard_employee_pnlLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(mainDashboard_employee_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(employee_status_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(employee_timeLog_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(8, 8, 8)
-                .addComponent(employee_attendance, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(319, 319, 319))
-        );
+        jLabel2.setText("Week Attendance");
+        mainDashboard_employee_pnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 116, -1));
 
         mainDashboard_tabbedPane.addTab("Dashboard", mainDashboard_employee_pnl);
 
@@ -687,10 +673,6 @@ public class Main_Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void timelog_timeIn_rbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timelog_timeIn_rbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timelog_timeIn_rbActionPerformed
-
     private void status_update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_update_btnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_status_update_btnActionPerformed
@@ -711,16 +693,19 @@ public class Main_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void updateTimeIn_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTimeIn_btnActionPerformed
+       
+        
+        
+    }//GEN-LAST:event_updateTimeIn_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane employee_attendance;
-    private javax.swing.JLabel employee_displayTime;
     private javax.swing.JPanel employee_status_pnl;
-    private javax.swing.JPanel employee_timeLog_pnl;
-    private javax.swing.JButton employee_updateTime_btn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -735,8 +720,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -780,7 +765,9 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JRadioButton status_notAvailable_rb;
     private javax.swing.JScrollPane status_scrollpane;
     private javax.swing.JButton status_update_btn;
-    private javax.swing.JRadioButton timelog_timeIn_rb;
-    private javax.swing.JRadioButton timelog_timeOut_rb;
+    private Components.TimeLabel timeLabel1;
+    private javax.swing.JPanel timeLog_pnl;
+    private javax.swing.JButton updateTimeIn_btn;
+    private javax.swing.JLabel userLbl;
     // End of variables declaration//GEN-END:variables
 }
