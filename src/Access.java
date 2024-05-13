@@ -270,7 +270,8 @@ public class Access extends javax.swing.JFrame {
 
     private void login_enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_enterBtnActionPerformed
         int id = db.login(login_usernameF.getText(), login_passwordF.getText());
-        if(id != 0){
+        int archived = Integer.parseInt(String.valueOf(db.getUserData(id, "users" ,"archived")));
+        if(id != 0 && archived != 0){
             new Main_Dashboard(id).setVisible(true);
             this.dispose();
         }

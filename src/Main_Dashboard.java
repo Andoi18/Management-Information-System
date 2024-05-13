@@ -1,3 +1,11 @@
+
+import java.awt.event.KeyEvent;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,7 +25,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
     int userID;
     
     db_connection db = new db_connection();
-    GeneralFnc employee = new GeneralFnc();
+    GeneralFnc fnc = new GeneralFnc();
     
     public Main_Dashboard(int uID) {
         initComponents();
@@ -29,12 +37,41 @@ public class Main_Dashboard extends javax.swing.JFrame {
     }
     
     //VARIABLES
-    boolean timeIn;
     
     private void initializeData(){
         userLbl.setText("Welcome " + db.getUserData(userID, "userdata", "firstName"));
-        timeIn = false;
+       
         
+        
+        
+    }
+    
+    private void tabbedPaneBehavior(){
+        int accSetup, admin;
+        admin = Integer.parseInt(String.valueOf(db.getUserData(userID, "users" ,"admin")));
+        accSetup = Integer.parseInt(String.valueOf(db.getUserData(userID, "users" ,"accSetup")));
+        
+        //ADMIN PARAMS
+        if(admin == 0){
+            mainDashboard_tabbedPane.remove(employee_pnl);
+            mainDashboard_tabbedPane.remove(accountSetup_pnl);
+            mainDashboard_tabbedPane.remove(profile_pnl);
+            return;
+        }
+        
+        //EMPLOYEE PARMAS
+        if(accSetup != 1){
+            mainDashboard_tabbedPane.remove(accountSetup_pnl);
+            return;
+        }
+        else{
+            mainDashboard_tabbedPane.remove(employee_pnl);
+            mainDashboard_tabbedPane.remove(profile_pnl);
+            mainDashboard_tabbedPane.remove(admin_pnl);
+            mainDashboard_tabbedPane.remove(settings_pnl);
+            return;
+        }
+    
     }
 
     /**
@@ -47,7 +84,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         mainDashboard_tabbedPane = new javax.swing.JTabbedPane();
-        mainDashboard_employee_pnl = new javax.swing.JPanel();
+        employee_pnl = new javax.swing.JPanel();
         timeLog_pnl = new javax.swing.JPanel();
         updateTimeIn_btn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -97,6 +134,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
         settings_pnl = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -111,7 +149,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jPanel10 = new javax.swing.JPanel();
+        accountSetup_pnl = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
@@ -119,37 +157,37 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jPanel19 = new javax.swing.JPanel();
+        setup_lastNameF = new javax.swing.JTextField();
+        panel123 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        setup_firstNameF = new javax.swing.JTextField();
         jPanel20 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        setup_middleNameF = new javax.swing.JTextField();
         jPanel16 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        setup_genderCb = new javax.swing.JComboBox<>();
         jPanel22 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        setup_birthdateDp = new com.toedter.calendar.JDateChooser();
         jPanel27 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        setup_addressF = new javax.swing.JTextField();
         jPanel17 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        setup_contactF = new javax.swing.JTextField();
         jPanel25 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        setup_emailF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         mainDashboard_tabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        mainDashboard_employee_pnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        employee_pnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         updateTimeIn_btn.setText("Time-in");
         updateTimeIn_btn.setToolTipText("");
@@ -190,7 +228,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(109, Short.MAX_VALUE))
         );
 
-        mainDashboard_employee_pnl.add(timeLog_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, 311));
+        employee_pnl.add(timeLog_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, 311));
 
         status_lbl.setText("Status");
 
@@ -254,10 +292,10 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        mainDashboard_employee_pnl.add(employee_status_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+        employee_pnl.add(employee_status_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         userLbl.setText("Hello user!");
-        mainDashboard_employee_pnl.add(userLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 15, 373, 30));
+        employee_pnl.add(userLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 15, 373, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,12 +317,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         employee_attendance.addTab("Date", jScrollPane1);
 
-        mainDashboard_employee_pnl.add(employee_attendance, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 589, 96));
+        employee_pnl.add(employee_attendance, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 589, 96));
 
         jLabel2.setText("Week Attendance");
-        mainDashboard_employee_pnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 116, -1));
+        employee_pnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 116, -1));
 
-        mainDashboard_tabbedPane.addTab("Dashboard", mainDashboard_employee_pnl);
+        mainDashboard_tabbedPane.addTab("Dashboard", employee_pnl);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -543,7 +581,32 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         mainDashboard_tabbedPane.addTab("Admin Controls", admin_pnl);
 
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.Y_AXIS));
+
         jLabel7.setText("My Account");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 826, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel7.add(jPanel10);
 
         jLabel8.setText("Change my password");
 
@@ -580,7 +643,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -596,7 +659,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -609,6 +672,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(15, 15, 15))
         );
+
+        jPanel7.add(jPanel8);
 
         jLabel9.setText("Delete My Account");
 
@@ -623,7 +688,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(559, Short.MAX_VALUE))
+                .addContainerGap(684, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,44 +697,13 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(jButton9)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(427, Short.MAX_VALUE))
         );
+
+        jPanel7.add(jPanel9);
 
         jButton10.setText("Logout");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(79, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel7)
-                .addGap(30, 30, 30)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(jButton10)
-                .addGap(39, 39, 39))
-        );
+        jPanel7.add(jButton10);
 
         jScrollPane4.setViewportView(jPanel7);
 
@@ -690,8 +724,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         mainDashboard_tabbedPane.addTab("Settings", settings_pnl);
 
-        jPanel10.setPreferredSize(new java.awt.Dimension(840, 487));
-        jPanel10.setLayout(new javax.swing.BoxLayout(jPanel10, javax.swing.BoxLayout.Y_AXIS));
+        accountSetup_pnl.setPreferredSize(new java.awt.Dimension(840, 487));
+        accountSetup_pnl.setLayout(new javax.swing.BoxLayout(accountSetup_pnl, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel12.setBackground(new java.awt.Color(51, 51, 51));
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -702,11 +736,21 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
         jButton11.setText("Confirm");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(204, 0, 0));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton12.setForeground(new java.awt.Color(0, 0, 0));
         jButton12.setText("Logout");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -740,7 +784,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        jPanel10.add(jPanel15);
+        accountSetup_pnl.add(jPanel15);
 
         jPanel11.setBackground(new java.awt.Color(204, 204, 204));
         jPanel11.setPreferredSize(new java.awt.Dimension(836, 120));
@@ -752,6 +796,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Last Name");
 
+        setup_lastNameF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                setup_lastNameFKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -760,7 +810,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setup_lastNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
@@ -769,46 +819,58 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_lastNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel18);
 
-        jPanel19.setBackground(new java.awt.Color(204, 204, 204));
+        panel123.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("First Name");
 
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
+        setup_firstNameF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                setup_firstNameFKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel123Layout = new javax.swing.GroupLayout(panel123);
+        panel123.setLayout(panel123Layout);
+        panel123Layout.setHorizontalGroup(
+            panel123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel123Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(setup_firstNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
+        panel123Layout.setVerticalGroup(
+            panel123Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel123Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_firstNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jPanel11.add(jPanel19);
+        jPanel11.add(panel123);
 
         jPanel20.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Middle Name");
+
+        setup_middleNameF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                setup_middleNameFKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -817,7 +879,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setup_middleNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -827,13 +889,13 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_middleNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel20);
 
-        jPanel10.add(jPanel11);
+        accountSetup_pnl.add(jPanel11);
 
         jPanel16.setBackground(new java.awt.Color(204, 204, 204));
         jPanel16.setPreferredSize(new java.awt.Dimension(836, 120));
@@ -845,8 +907,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Gender");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.setPreferredSize(new java.awt.Dimension(73, 22));
+        setup_genderCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Non-Binary", "Prefer not to say" }));
+        setup_genderCb.setPreferredSize(new java.awt.Dimension(73, 22));
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -856,7 +918,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setup_genderCb, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
@@ -865,7 +927,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_genderCb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -877,6 +939,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Birthdate");
 
+        setup_birthdateDp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                setup_birthdateDpKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
@@ -884,7 +952,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setup_birthdateDp, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
@@ -894,13 +962,13 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_birthdateDp, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel16.add(jPanel22);
 
-        jPanel10.add(jPanel16);
+        accountSetup_pnl.add(jPanel16);
 
         jPanel27.setBackground(new java.awt.Color(204, 204, 204));
         jPanel27.setPreferredSize(new java.awt.Dimension(836, 120));
@@ -917,7 +985,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setup_addressF, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel27Layout.setVerticalGroup(
@@ -926,11 +994,11 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_addressF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jPanel10.add(jPanel27);
+        accountSetup_pnl.add(jPanel27);
 
         jPanel17.setBackground(new java.awt.Color(204, 204, 204));
         jPanel17.setPreferredSize(new java.awt.Dimension(836, 120));
@@ -942,6 +1010,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Contact Number");
 
+        setup_contactF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                setup_contactFKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
         jPanel24Layout.setHorizontalGroup(
@@ -950,7 +1024,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setup_contactF, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
@@ -959,7 +1033,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_contactF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -978,7 +1052,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setup_emailF, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
@@ -988,15 +1062,15 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setup_emailF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel17.add(jPanel25);
 
-        jPanel10.add(jPanel17);
+        accountSetup_pnl.add(jPanel17);
 
-        mainDashboard_tabbedPane.addTab("tab6", jPanel10);
+        mainDashboard_tabbedPane.addTab("Account Setup", accountSetup_pnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1038,13 +1112,71 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateTimeIn_btnActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        Access acc = new Access();
+        acc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        Map<String, String> input = new HashMap<String, String>(); 
+        input.put("lastName", setup_lastNameF.getText());
+        input.put("firstName", setup_firstNameF.getText());
+        input.put("address", setup_addressF.getText());
+        input.put("contactNumber", setup_contactF.getText());
+        input.put("emailAddress", setup_emailF.getText());
+
+        input.forEach((key, value) -> {
+            if(input.get(key).equals("")){
+                JOptionPane.showMessageDialog(null,  "Please Enter Values in the Required Fields", "Missing Input",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+        });
+        
+        if(!fnc.isEmail(setup_emailF.getText())){
+            JOptionPane.showMessageDialog(null,  "Please Enter a Valid Email Address", "Email Invalid",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        input.put("middleName", setup_middleNameF.getText());
+        input.put("birthdate", fnc.dateFormatter(setup_birthdateDp.getDate()));
+        input.put("gender", fnc.getGenders()[setup_genderCb.getSelectedIndex()]);
+        
+        fnc.accountSetup(userID, input);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    
+    
+    
+    private void setup_firstNameFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_setup_firstNameFKeyTyped
+        fnc.alphaNumericFilter(evt, 2);
+    }//GEN-LAST:event_setup_firstNameFKeyTyped
+
+    private void setup_lastNameFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_setup_lastNameFKeyTyped
+        fnc.alphaNumericFilter(evt, 2);
+    }//GEN-LAST:event_setup_lastNameFKeyTyped
+
+    private void setup_middleNameFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_setup_middleNameFKeyTyped
+        fnc.alphaNumericFilter(evt, 2);
+    }//GEN-LAST:event_setup_middleNameFKeyTyped
+
+    private void setup_contactFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_setup_contactFKeyTyped
+        fnc.alphaNumericFilter(evt, 1);
+    }//GEN-LAST:event_setup_contactFKeyTyped
+
+    private void setup_birthdateDpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_setup_birthdateDpKeyPressed
+        fnc.alphaNumericFilter(evt, 0);
+    }//GEN-LAST:event_setup_birthdateDpKeyPressed
+
+    
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel accountSetup_pnl;
     private javax.swing.JPanel admin_pnl;
     private javax.swing.JTabbedPane employee_attendance;
+    private javax.swing.JPanel employee_pnl;
     private javax.swing.JPanel employee_status_pnl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1062,8 +1194,6 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1090,7 +1220,6 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
@@ -1118,17 +1247,19 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JPanel mainDashboard_employee_pnl;
     private javax.swing.JTabbedPane mainDashboard_tabbedPane;
+    private javax.swing.JPanel panel123;
     private javax.swing.JScrollPane profile_pnl;
     private javax.swing.JPanel settings_pnl;
+    private javax.swing.JTextField setup_addressF;
+    private com.toedter.calendar.JDateChooser setup_birthdateDp;
+    private javax.swing.JTextField setup_contactF;
+    private javax.swing.JTextField setup_emailF;
+    private javax.swing.JTextField setup_firstNameF;
+    private javax.swing.JComboBox<String> setup_genderCb;
+    private javax.swing.JTextField setup_lastNameF;
+    private javax.swing.JTextField setup_middleNameF;
     private javax.swing.JLabel statusPnl_status_lbl;
     private javax.swing.JTextArea statusPnl_status_textArea;
     private javax.swing.JRadioButton status_available_rb;

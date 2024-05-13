@@ -1,15 +1,16 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.PreparedStatement;
+ */
+import java.sql.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -42,11 +43,9 @@ public class db_connection {
     
     public boolean register(String username, String pass){
         Date d = new Date();
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateTime = currentDateTime.format(formatter);
+        String formattedDateTime = fnc.getCurrentDateTime();
         
-         try (Connection connection = DriverManager.getConnection(url, user, pw)) {
+        try (Connection connection = DriverManager.getConnection(url, user, pw)) {
             String tempID;
                 
             do{
@@ -69,7 +68,8 @@ public class db_connection {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }    }
+        }    
+    }
     
     
     public int login(String username, String pass){
@@ -128,4 +128,40 @@ public class db_connection {
         return 0;
     }
     
+    public void addToDb(int userID, String table, String column, String value){
+        String formattedDateTime = fnc.getCurrentDateTime();
+        
+         try (Connection connection = DriverManager.getConnection(url, user, pw)) {
+            String sql = "INSERT INTO `"+table+"`("+column+") VALUES ('"+value+"')";
+            try (Statement statement = connection.createStatement()){
+                int rowsInserted = statement.executeUpdate(sql);
+                if (rowsInserted > 0) {
+                    System.out.println("A new row has been inserted successfully.");
+                    return;
+                }
+                return;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }    
+    }
+    
+    public void updateDb(int userID, String table, String column, String value){
+        String formattedDateTime = fnc.getCurrentDateTime();
+        
+         try (Connection connection = DriverManager.getConnection(url, user, pw)) {
+            String sql = "UPDATE "+table+" SET "+column+" = '"+value+"' WHERE userID="+userID;;
+            Statement statement = connection.prepareStatement(sql);
+            int rowsUpdated = statement.executeUpdate(sql);
+            if (rowsUpdated > 0) {
+                System.out.println("Row/s has been upadted successfully.");
+                return;
+            }
+            return;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }    
+    }
 }
