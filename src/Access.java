@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,6 +14,7 @@
 public class Access extends javax.swing.JFrame {
 
     private boolean isLogin = true;
+    db_connection db = new db_connection();
     
     /**
      * Creates new form Access
@@ -33,17 +37,17 @@ public class Access extends javax.swing.JFrame {
         access_tabpane = new javax.swing.JTabbedPane();
         access_login_panel = new javax.swing.JPanel();
         access_login_lbl = new javax.swing.JLabel();
-        access_login_passwordF = new javax.swing.JPasswordField();
-        access_login_usernameF = new javax.swing.JTextField();
-        access_login_enter = new javax.swing.JButton();
-        access_login_checkB = new javax.swing.JCheckBox();
-        access_register_toRegister = new javax.swing.JLabel();
+        login_passwordF = new javax.swing.JPasswordField();
+        login_usernameF = new javax.swing.JTextField();
+        login_enterBtn = new javax.swing.JButton();
+        login_checkB = new javax.swing.JCheckBox();
+        register_toRegister = new javax.swing.JLabel();
         access_register_panel = new javax.swing.JPanel();
         access_register_lbl = new javax.swing.JLabel();
-        access_register_passwordF = new javax.swing.JPasswordField();
-        access_register_usernameF = new javax.swing.JTextField();
-        access_login_enter1 = new javax.swing.JButton();
-        access_register_confirmPasswordF = new javax.swing.JPasswordField();
+        register_passwordF = new javax.swing.JPasswordField();
+        register_usernameF = new javax.swing.JTextField();
+        register_enterBtn = new javax.swing.JButton();
+        register_confirmPasswordF = new javax.swing.JPasswordField();
         access_register_checkB1 = new javax.swing.JCheckBox();
         access_register_toLogin = new javax.swing.JLabel();
 
@@ -54,25 +58,26 @@ public class Access extends javax.swing.JFrame {
 
         access_login_lbl.setText("Login");
 
-        access_login_passwordF.addActionListener(new java.awt.event.ActionListener() {
+        login_passwordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                access_login_passwordFActionPerformed(evt);
+                login_passwordFActionPerformed(evt);
             }
         });
 
-        access_login_enter.setText("Enter");
-        access_login_enter.addActionListener(new java.awt.event.ActionListener() {
+        login_enterBtn.setText("Enter");
+        login_enterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                access_login_enterActionPerformed(evt);
+                login_enterBtnActionPerformed(evt);
             }
         });
 
-        access_login_checkB.setLabel("Show Password");
+        login_checkB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        login_checkB.setLabel("Show Password");
 
-        access_register_toRegister.setText("Dont have an Account? Click HERE to Register");
-        access_register_toRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+        register_toRegister.setText("Dont have an Account? Click HERE to Register");
+        register_toRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                access_register_toRegisterMouseClicked(evt);
+                register_toRegisterMouseClicked(evt);
             }
         });
 
@@ -83,22 +88,24 @@ public class Access extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, access_login_panelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(access_login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(access_login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(access_login_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(154, 154, 154))
+                    .addComponent(login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(178, 178, 178))
             .addGroup(access_login_panelLayout.createSequentialGroup()
                 .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(access_login_enter))
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(access_register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
                         .addGap(211, 211, 211)
-                        .addComponent(access_login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                        .addComponent(access_login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(access_login_panelLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(login_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(access_login_panelLayout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(access_login_panelLayout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(login_enterBtn)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         access_login_panelLayout.setVerticalGroup(
             access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,45 +113,43 @@ public class Access extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addComponent(access_login_lbl)
                 .addGap(18, 18, 18)
-                .addComponent(access_login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(access_login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(access_login_checkB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(access_register_toRegister)
+                .addComponent(login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(access_login_enter)
+                .addComponent(login_checkB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(register_toRegister)
+                .addGap(18, 18, 18)
+                .addComponent(login_enterBtn)
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
         access_tabpane.addTab("Login", access_login_panel);
 
+        access_register_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         access_register_lbl.setText("Register");
 
-        access_register_passwordF.setText("jPasswordField1");
-        access_register_passwordF.addActionListener(new java.awt.event.ActionListener() {
+        register_passwordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                access_register_passwordFActionPerformed(evt);
+                register_passwordFActionPerformed(evt);
             }
         });
 
-        access_register_usernameF.setText("jTextField1");
-
-        access_login_enter1.setText("Enter");
-        access_login_enter1.addActionListener(new java.awt.event.ActionListener() {
+        register_enterBtn.setText("Enter");
+        register_enterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                access_login_enter1ActionPerformed(evt);
+                register_enterBtnActionPerformed(evt);
             }
         });
 
-        access_register_confirmPasswordF.setText("jPasswordField1");
-        access_register_confirmPasswordF.addActionListener(new java.awt.event.ActionListener() {
+        register_confirmPasswordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                access_register_confirmPasswordFActionPerformed(evt);
+                register_confirmPasswordFActionPerformed(evt);
             }
         });
 
+        access_register_checkB1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         access_register_checkB1.setLabel("Show Password");
 
         access_register_toLogin.setText("Already have an Account? Click HERE to Log-in");
@@ -165,18 +170,19 @@ public class Access extends javax.swing.JFrame {
                         .addComponent(access_register_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(access_register_panelLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addGroup(access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(access_register_checkB1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(access_register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(access_register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(access_register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(access_register_panelLayout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(access_register_toLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(access_register_panelLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
-                        .addComponent(access_login_enter1)))
+                        .addComponent(register_enterBtn))
+                    .addGroup(access_register_panelLayout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(access_register_checkB1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         access_register_panelLayout.setVerticalGroup(
@@ -185,17 +191,17 @@ public class Access extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addComponent(access_register_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(access_register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(access_register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(access_register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(access_register_checkB1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(access_register_toLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(access_login_enter1)
+                .addComponent(register_enterBtn)
                 .addGap(24, 24, 24))
         );
 
@@ -221,30 +227,63 @@ public class Access extends javax.swing.JFrame {
         updateAccessState();
     }//GEN-LAST:event_access_register_toLoginMouseClicked
 
-    private void access_register_confirmPasswordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_register_confirmPasswordFActionPerformed
+    private void register_confirmPasswordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_confirmPasswordFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_access_register_confirmPasswordFActionPerformed
+    }//GEN-LAST:event_register_confirmPasswordFActionPerformed
 
-    private void access_login_enter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_enter1ActionPerformed
+    private void register_enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_enterBtnActionPerformed
+        //PRECAUTIONS FOR REGISTER INPUT
+        if(register_passwordF.getText().equals("") || register_usernameF.getText().equals("") || register_confirmPasswordF.getText().equals("")){
+            JOptionPane.showMessageDialog(null,  "Please fill up all of the required fields", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(register_usernameF.getText().length() < 3){
+            JOptionPane.showMessageDialog(null,  "Your username must contain atleast 3 characters", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(register_passwordF.getText().length() < 8){
+            JOptionPane.showMessageDialog(null,  "Your password must contain atleast 8 characters", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(!register_passwordF.getText().equals(register_confirmPasswordF.getText())){
+            JOptionPane.showMessageDialog(null,  "Passwords does not match", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        
+        String tempID = db.register(register_usernameF.getText(), register_passwordF.getText());
+        
+        if(!tempID.equals("0")){
+            db.dbLog(Integer.parseInt(tempID), "Employee", "New User", "A new account has been created");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,  "Please check your credentials are correct", "Credentials Invalid",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_register_enterBtnActionPerformed
+
+    private void register_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_passwordFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_access_login_enter1ActionPerformed
+    }//GEN-LAST:event_register_passwordFActionPerformed
 
-    private void access_register_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_register_passwordFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_access_register_passwordFActionPerformed
-
-    private void access_register_toRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_access_register_toRegisterMouseClicked
+    private void register_toRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_toRegisterMouseClicked
         updateAccessState();
-    }//GEN-LAST:event_access_register_toRegisterMouseClicked
+    }//GEN-LAST:event_register_toRegisterMouseClicked
 
-    private void access_login_enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_enterActionPerformed
-        new Main_Dashboard().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_access_login_enterActionPerformed
+    private void login_enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_enterBtnActionPerformed
+        int id = db.login(login_usernameF.getText(), login_passwordF.getText());
+        int archived = Integer.parseInt(String.valueOf(db.getUserData(id, "users" ,"archived")));
+        if(id != 0 && archived != 0){
+            new Main_Dashboard(id).setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,  "Please check your credentials are correct", "Credentials Invalid",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_login_enterBtnActionPerformed
 
-    private void access_login_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_access_login_passwordFActionPerformed
+    private void login_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_passwordFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_access_login_passwordFActionPerformed
+    }//GEN-LAST:event_login_passwordFActionPerformed
 
     private void updateAccessState(){
         isLogin = !isLogin;
@@ -292,21 +331,21 @@ public class Access extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox access_login_checkB;
-    private javax.swing.JButton access_login_enter;
-    private javax.swing.JButton access_login_enter1;
     private javax.swing.JLabel access_login_lbl;
     private javax.swing.JPanel access_login_panel;
-    private javax.swing.JPasswordField access_login_passwordF;
-    private javax.swing.JTextField access_login_usernameF;
     private javax.swing.JCheckBox access_register_checkB1;
-    private javax.swing.JPasswordField access_register_confirmPasswordF;
     private javax.swing.JLabel access_register_lbl;
     private javax.swing.JPanel access_register_panel;
-    private javax.swing.JPasswordField access_register_passwordF;
     private javax.swing.JLabel access_register_toLogin;
-    private javax.swing.JLabel access_register_toRegister;
-    private javax.swing.JTextField access_register_usernameF;
     private javax.swing.JTabbedPane access_tabpane;
+    private javax.swing.JCheckBox login_checkB;
+    private javax.swing.JButton login_enterBtn;
+    private javax.swing.JPasswordField login_passwordF;
+    private javax.swing.JTextField login_usernameF;
+    private javax.swing.JPasswordField register_confirmPasswordF;
+    private javax.swing.JButton register_enterBtn;
+    private javax.swing.JPasswordField register_passwordF;
+    private javax.swing.JLabel register_toRegister;
+    private javax.swing.JTextField register_usernameF;
     // End of variables declaration//GEN-END:variables
 }
