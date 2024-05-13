@@ -19,11 +19,10 @@ public class GeneralFnc {
     
     
     
-    public int generateRandomID(int length, String startingNum) {
+    public String generateRandomID(int length, String startingNum) {
         if (length <= 1) {
             throw new IllegalArgumentException("Length must be greater than 1");
         }
-
         StringBuilder sb = new StringBuilder(startingNum);
         Random random = new Random();
 
@@ -32,7 +31,7 @@ public class GeneralFnc {
             sb.append(digit);
         }
 
-        return Integer.parseInt(sb.toString());
+        return (sb.toString());
     }
     
     public boolean isEmail(String email) {

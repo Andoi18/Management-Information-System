@@ -49,7 +49,7 @@ public class db_connection {
             String tempID;
                 
             do{
-                tempID = Integer.toString(fnc.generateRandomID(10, Integer.toString(d.getYear() + 1900)));
+                tempID = fnc.generateRandomID(10, Integer.toString(d.getYear() + 1900));
             }
             while(existsInDb("users", "userID", tempID));
             
@@ -159,6 +159,31 @@ public class db_connection {
                 return;
             }
             return;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }    
+    }
+    
+    public void dbLog(int userID, String by, String type, String message){
+        String formattedDateTime = fnc.getCurrentDateTime();
+         try (Connection connection = DriverManager.getConnection(url, user, pw)) {
+            String tempID;
+            do{
+                tempID = fnc.generateRandomID(15, "1");
+            }
+            while(existsInDb("logs", "logID", tempID));
+             
+            String sql = "INSERT INTO `logs`(`logID`, `loggerID`, `loggedBy`, `type`, `message`, `dateTime`) "
+                        + "VALUES ('"+tempID+"', '"+ userID+"','"+by+"','"+type+"','"+message+"','"+ formattedDateTime+"')";
+            try (Statement statement = connection.createStatement()){
+                int rowsInserted = statement.executeUpdate(sql);
+                if (rowsInserted > 0) {
+                    System.out.println("A new row has been inserted successfully.");
+                    return;
+                }
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return;
