@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,8 +24,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Main_Dashboard
      */
+    
+    //LOCAL VARIABLES
     int userID;
     int active;
+    
+    ButtonGroup availabilityBtnGroup = new ButtonGroup();
     
     db_connection db = new db_connection();
     GeneralFnc fnc = new GeneralFnc();
@@ -40,9 +45,28 @@ public class Main_Dashboard extends javax.swing.JFrame {
         changeUsernameTf.setText(db.getUserData(userID, "users", "username").toString());
         tabbedPaneBehavior();
         setTimeLog();
+        availabilitySetup();
+        
     }
     
-    //VARIABLES
+    private void availabilitySetup(){
+        availabilityBtnGroup.add(available_rb);
+        availabilityBtnGroup.add(busy_rb);
+        //SETS AVAILABITY RADIO BUTTON
+        if(db.getUserData(userID, "users", "availability").equals("0")){
+            available_rb.setSelected(true);
+            busy_rb.setSelected(false);
+        }
+        else{
+            available_rb.setSelected(false);
+            busy_rb.setSelected(true);
+        }
+        
+        String message =  db.getUserData(userID, "users", "statusMessage").toString();
+        if(!message.isEmpty()){
+            statusMessage_textArea.setText(message);
+        }
+    }
     
     private void setTimeLog(){
         if(active == 1){
@@ -102,18 +126,18 @@ public class Main_Dashboard extends javax.swing.JFrame {
         timeLabel1 = new Components.TimeLabel();
         employee_status_pnl = new javax.swing.JPanel();
         status_lbl = new javax.swing.JLabel();
-        status_available_rb = new javax.swing.JRadioButton();
-        status_notAvailable_rb = new javax.swing.JRadioButton();
+        available_rb = new javax.swing.JRadioButton();
+        busy_rb = new javax.swing.JRadioButton();
         status_scrollpane = new javax.swing.JScrollPane();
-        statusPnl_status_textArea = new javax.swing.JTextArea();
-        status_update_btn = new javax.swing.JButton();
+        statusMessage_textArea = new javax.swing.JTextArea();
+        statusUpdate_btn = new javax.swing.JButton();
         statusPnl_status_lbl = new javax.swing.JLabel();
         userLbl = new javax.swing.JLabel();
+        mylogs_pnl = new javax.swing.JPanel();
         profile_pnl = new javax.swing.JScrollPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         admin_pnl = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -232,18 +256,25 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
         status_lbl.setText("Status");
 
-        status_available_rb.setText("Available");
+        available_rb.setText("Available");
+        available_rb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        status_notAvailable_rb.setText("Not Available");
-
-        statusPnl_status_textArea.setColumns(20);
-        statusPnl_status_textArea.setRows(5);
-        status_scrollpane.setViewportView(statusPnl_status_textArea);
-
-        status_update_btn.setText("Update");
-        status_update_btn.addActionListener(new java.awt.event.ActionListener() {
+        busy_rb.setText("Busy");
+        busy_rb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        busy_rb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                status_update_btnActionPerformed(evt);
+                busy_rbActionPerformed(evt);
+            }
+        });
+
+        statusMessage_textArea.setColumns(20);
+        statusMessage_textArea.setRows(5);
+        status_scrollpane.setViewportView(statusMessage_textArea);
+
+        statusUpdate_btn.setText("Update");
+        statusUpdate_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusUpdate_btnActionPerformed(evt);
             }
         });
 
@@ -264,15 +295,15 @@ public class Main_Dashboard extends javax.swing.JFrame {
                         .addGap(23, 23, 23))
                     .addGroup(employee_status_pnlLayout.createSequentialGroup()
                         .addGroup(employee_status_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(status_update_btn)
+                            .addComponent(statusUpdate_btn)
                             .addComponent(statusPnl_status_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(employee_status_pnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(status_available_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(status_notAvailable_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64))))
+                        .addGap(30, 30, 30)
+                        .addComponent(available_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(busy_rb, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))))
         );
         employee_status_pnlLayout.setVerticalGroup(
             employee_status_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,14 +312,14 @@ public class Main_Dashboard extends javax.swing.JFrame {
                 .addComponent(status_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(employee_status_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(status_available_rb)
-                    .addComponent(status_notAvailable_rb))
+                    .addComponent(available_rb)
+                    .addComponent(busy_rb))
                 .addGap(28, 28, 28)
                 .addComponent(statusPnl_status_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(status_scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(status_update_btn)
+                .addComponent(statusUpdate_btn)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -299,6 +330,19 @@ public class Main_Dashboard extends javax.swing.JFrame {
         employee_pnl.add(userLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 373, 30));
 
         mainDashboard_tabbedPane.addTab("Dashboard", employee_pnl);
+
+        javax.swing.GroupLayout mylogs_pnlLayout = new javax.swing.GroupLayout(mylogs_pnl);
+        mylogs_pnl.setLayout(mylogs_pnlLayout);
+        mylogs_pnlLayout.setHorizontalGroup(
+            mylogs_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 838, Short.MAX_VALUE)
+        );
+        mylogs_pnlLayout.setVerticalGroup(
+            mylogs_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 487, Short.MAX_VALUE)
+        );
+
+        mainDashboard_tabbedPane.addTab("My Logs", mylogs_pnl);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -325,19 +369,6 @@ public class Main_Dashboard extends javax.swing.JFrame {
         );
 
         jTabbedPane2.addTab("Edit Profile", jPanel5);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 858, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("My Logs", jPanel6);
 
         profile_pnl.setViewportView(jTabbedPane2);
 
@@ -1159,7 +1190,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(mainDashboard_tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -1181,21 +1212,44 @@ public class Main_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void status_update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_update_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_status_update_btnActionPerformed
+    private void statusUpdate_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusUpdate_btnActionPerformed
+        String msg, message;
+        msg = statusMessage_textArea.getText();
+        
+        if(msg.isBlank() && busy_rb.isSelected()){
+            JOptionPane.showMessageDialog(null,  "Status Message cannot be empty when busy", "",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        if(busy_rb.isSelected()){
+            db.updateDb(userID, "users", "statusMessage", msg);
+            db.updateDb(userID, "users", "availability", "1");
+            message = db.getUserData(userID, "userdata", "firstName").toString() + " is Currently Busy - " + msg;
+            db.dbLog(userID, "Employee", "Status Update", message);
+            return;
+        }
+        
+        if(statusMessage_textArea.getText().isBlank()){
+            db.updateDb(userID, "users", "statusMessage", "Currently Idle...");
+            db.updateDb(userID, "users", "availability", "0");
+            message = db.getUserData(userID, "userdata", "firstName").toString() + " is Now Available";
+            db.dbLog(userID, "Employee", "Status Update", message);
+            return;
+        }
+        
+    }//GEN-LAST:event_statusUpdate_btnActionPerformed
 
     private void updateTimeIn_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTimeIn_btnActionPerformed
         String message = db.getUserData(userID, "userdata", "firstName").toString() + " " + db.getUserData(userID, "userdata", "lastName").toString();
         if(active == 1){
             db.updateDb(userID, "users", "active", "0");
             active = 0;
-            message = message + " has logged in";
+            message = message + " has timed-in";
         }
         else{
             db.updateDb(userID, "users", "active", "1");
             active = 1;
-            message = message + " has logged out";
+            message = message + " has timed-out";
         }
         db.dbLog(userID, "Employee", "Attendance", message);
         setTimeLog();
@@ -1261,6 +1315,10 @@ public class Main_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField4ActionPerformed
 
+    private void busy_rbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busy_rbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_busy_rbActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -1269,6 +1327,8 @@ public class Main_Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountSetup_pnl;
     private javax.swing.JPanel admin_pnl;
+    private javax.swing.JRadioButton available_rb;
+    private javax.swing.JRadioButton busy_rb;
     private javax.swing.JTextField changeUsernameTf;
     private javax.swing.JPanel employee_pnl;
     private javax.swing.JPanel employee_status_pnl;
@@ -1333,7 +1393,6 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField4;
@@ -1349,6 +1408,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTabbedPane mainDashboard_tabbedPane;
+    private javax.swing.JPanel mylogs_pnl;
     private javax.swing.JPanel panel123;
     private javax.swing.JScrollPane profile_pnl;
     private javax.swing.JPanel settings_pnl;
@@ -1360,13 +1420,11 @@ public class Main_Dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> setup_genderCb;
     private javax.swing.JTextField setup_lastNameF;
     private javax.swing.JTextField setup_middleNameF;
+    private javax.swing.JTextArea statusMessage_textArea;
     private javax.swing.JLabel statusPnl_status_lbl;
-    private javax.swing.JTextArea statusPnl_status_textArea;
-    private javax.swing.JRadioButton status_available_rb;
+    private javax.swing.JButton statusUpdate_btn;
     private javax.swing.JLabel status_lbl;
-    private javax.swing.JRadioButton status_notAvailable_rb;
     private javax.swing.JScrollPane status_scrollpane;
-    private javax.swing.JButton status_update_btn;
     private Components.TimeLabel timeLabel1;
     private javax.swing.JPanel timeLog_pnl;
     private javax.swing.JButton updateTimeIn_btn;
