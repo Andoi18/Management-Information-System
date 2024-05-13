@@ -246,9 +246,7 @@ public class Main_Dashboard extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Time-in / Time-out");
         timeLog_pnl.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 129, 32));
-
-        timeLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        timeLog_pnl.add(timeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 204, 74));
+        timeLog_pnl.add(timeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         employee_pnl.add(timeLog_pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 250, 320));
 
