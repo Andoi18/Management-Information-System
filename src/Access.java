@@ -94,9 +94,6 @@ public class Access extends javax.swing.JFrame {
             .addGroup(access_login_panelLayout.createSequentialGroup()
                 .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(login_enterBtn))
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(access_login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(access_login_panelLayout.createSequentialGroup()
@@ -104,7 +101,10 @@ public class Access extends javax.swing.JFrame {
                         .addComponent(login_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(access_login_panelLayout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addComponent(register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(access_login_panelLayout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(login_enterBtn)))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         access_login_panelLayout.setVerticalGroup(
@@ -251,9 +251,10 @@ public class Access extends javax.swing.JFrame {
         }
         
         
+        String tempID = db.register(register_usernameF.getText(), register_passwordF.getText());
         
-        if(db.register(register_usernameF.getText(), register_passwordF.getText())){
-            
+        if(!tempID.equals("0")){
+            db.dbLog(Integer.parseInt(tempID), "Employee", "New User", "A new account has been created");
         }
         else{
             JOptionPane.showMessageDialog(null,  "Please check your credentials are correct", "Credentials Invalid",JOptionPane.INFORMATION_MESSAGE);

@@ -1209,9 +1209,9 @@ public class Main_Dashboard extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         Map<String, String> input = new HashMap<String, String>(); 
-        input.put("lastName", setup_lastNameF.getText());
-        input.put("firstName", setup_firstNameF.getText());
-        input.put("address", setup_addressF.getText());
+        input.put("lastName", fnc.capitalizeFirstLetter(setup_lastNameF.getText()));
+        input.put("firstName", fnc.capitalizeFirstLetter(setup_firstNameF.getText()));
+        input.put("address", fnc.capitalizeFirstLetter(setup_addressF.getText()));
         input.put("contactNumber", setup_contactF.getText());
         input.put("emailAddress", setup_emailF.getText());
 
@@ -1226,11 +1226,12 @@ public class Main_Dashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,  "Please Enter a Valid Email Address", "Email Invalid",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        input.put("middleName", setup_middleNameF.getText());
+        input.put("middleName", fnc.capitalizeFirstLetter(setup_middleNameF.getText()));
         input.put("birthdate", fnc.dateFormatter(setup_birthdateDp.getDate()));
         input.put("gender", fnc.getGenders()[setup_genderCb.getSelectedIndex()]);
         
         fnc.accountSetup(userID, input);
+        tabbedPaneBehavior();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     

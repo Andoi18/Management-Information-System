@@ -41,7 +41,7 @@ public class db_connection {
         }
     }
     
-    public boolean register(String username, String pass){
+    public String register(String username, String pass){
         Date d = new Date();
         String formattedDateTime = fnc.getCurrentDateTime();
         
@@ -56,18 +56,18 @@ public class db_connection {
             
             String sql = "INSERT INTO `users`"
                     + "(`userID`, `username`, `password`, `admin`, `archived`, `active`, `datetimeCreated`) VALUES "
-                    + "('"+ tempID +"', '"+ username +"','"+ pass +"','0','0','0','"+ formattedDateTime +"')";
+                    + "('"+ tempID +"', '"+ username +"','"+ pass +"','1','1','1','"+ formattedDateTime +"')";
             try (Statement statement = connection.createStatement()){
                 int rowsInserted = statement.executeUpdate(sql);
                 if (rowsInserted > 0) {
                     System.out.println("A new row has been inserted successfully.");
-                    return true;
+                    return tempID;
                 }
-                return false;
+                return "0";
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return "0";
         }    
     }
     
