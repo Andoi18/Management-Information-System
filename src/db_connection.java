@@ -111,7 +111,7 @@ public class db_connection {
         }
     }
     
-    public Object getUserData(int userID, String table, String column, Object output){
+    public Object getUserData(int userID, String table, String column){
          try (Connection connection = DriverManager.getConnection(url, user, pw)) {
             String sql = "SELECT "+ column +" FROM `"+ table+"` WHERE userID=\""+ userID +"\"";
             try (Statement statement = connection.createStatement();
