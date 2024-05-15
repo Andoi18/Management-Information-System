@@ -23,6 +23,11 @@ public class Access extends javax.swing.JFrame {
     public Access() {
         initComponents();
         //db.testConnection();
+        fnc.addPlaceHolderStyle(login_usernameF);
+        fnc.addPlaceHolderStyle(login_passwordF);
+        fnc.addPlaceHolderStyle(register_usernameF);
+        fnc.addPlaceHolderStyle(register_passwordF);
+        fnc.addPlaceHolderStyle(register_confirmPasswordF);
     }
 
     /**
@@ -34,43 +39,176 @@ public class Access extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
         access_tabpane = new javax.swing.JTabbedPane();
         access_login_panel = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         access_login_lbl = new javax.swing.JLabel();
-        login_passwordF = new javax.swing.JPasswordField();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         login_usernameF = new javax.swing.JTextField();
+        login_passwordF = new javax.swing.JPasswordField();
+        jPanel8 = new javax.swing.JPanel();
         login_enterBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         login_checkB = new javax.swing.JCheckBox();
-        register_toRegister = new javax.swing.JLabel();
         access_register_panel = new javax.swing.JPanel();
-        access_register_lbl = new javax.swing.JLabel();
-        register_passwordF = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        access_login_lbl1 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         register_usernameF = new javax.swing.JTextField();
-        register_enterBtn = new javax.swing.JButton();
+        register_passwordF = new javax.swing.JPasswordField();
         register_confirmPasswordF = new javax.swing.JPasswordField();
+        jPanel11 = new javax.swing.JPanel();
         register_checkB = new javax.swing.JCheckBox();
-        access_register_toLogin = new javax.swing.JLabel();
+        register_enterBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Access Page");
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(17, 45, 78));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 480, 40));
 
         access_tabpane.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
-        access_login_lbl.setText("Login");
+        access_login_panel.setBackground(new java.awt.Color(17, 45, 78));
+        access_login_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 50));
 
+        jPanel5.setBackground(new java.awt.Color(219, 226, 239));
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel6.setBackground(new java.awt.Color(219, 226, 239));
+        jPanel6.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        access_login_lbl.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
+        access_login_lbl.setForeground(new java.awt.Color(0, 0, 0));
+        access_login_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        access_login_lbl.setText("LOGIN");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(access_login_lbl)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 3, Short.MAX_VALUE)
+                    .addComponent(access_login_lbl)
+                    .addGap(0, 4, Short.MAX_VALUE)))
+        );
+
+        jPanel5.add(jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(249, 247, 247));
+
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new java.awt.GridLayout(2, 0, 0, 20));
+
+        login_usernameF.setBackground(new java.awt.Color(219, 226, 239));
+        login_usernameF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        login_usernameF.setForeground(new java.awt.Color(0, 0, 0));
+        login_usernameF.setText("Username");
+        login_usernameF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                login_usernameFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                login_usernameFFocusLost(evt);
+            }
+        });
+        jPanel4.add(login_usernameF);
+
+        login_passwordF.setBackground(new java.awt.Color(219, 226, 239));
+        login_passwordF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        login_passwordF.setForeground(new java.awt.Color(0, 0, 0));
+        login_passwordF.setText("Password");
+        login_passwordF.setEchoChar('\u0000');
+        login_passwordF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                login_passwordFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                login_passwordFFocusLost(evt);
+            }
+        });
         login_passwordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_passwordFActionPerformed(evt);
             }
         });
+        jPanel4.add(login_passwordF);
 
-        login_enterBtn.setText("Enter");
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 24, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel5.add(jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(249, 247, 247));
+
+        login_enterBtn.setBackground(new java.awt.Color(63, 114, 175));
+        login_enterBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        login_enterBtn.setForeground(new java.awt.Color(249, 247, 247));
+        login_enterBtn.setText("ENTER");
+        login_enterBtn.setPreferredSize(new java.awt.Dimension(76, 27));
         login_enterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_enterBtnActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(219, 226, 239));
+        jButton2.setForeground(new java.awt.Color(63, 114, 175));
+        jButton2.setText("Do not have an Account? Click Here");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        login_checkB.setForeground(new java.awt.Color(63, 114, 175));
         login_checkB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         login_checkB.setLabel("Show Password");
         login_checkB.addActionListener(new java.awt.event.ActionListener() {
@@ -79,81 +217,153 @@ public class Access extends javax.swing.JFrame {
             }
         });
 
-        register_toRegister.setText("Dont have an Account? Click HERE to Register");
-        register_toRegister.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                register_toRegisterMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout access_login_panelLayout = new javax.swing.GroupLayout(access_login_panel);
-        access_login_panel.setLayout(access_login_panelLayout);
-        access_login_panelLayout.setHorizontalGroup(
-            access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, access_login_panelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(178, 178, 178))
-            .addGroup(access_login_panelLayout.createSequentialGroup()
-                .addGroup(access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(access_login_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(login_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(register_toRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(access_login_panelLayout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(login_enterBtn)))
-                .addContainerGap(110, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(login_enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
+            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(login_checkB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        access_login_panelLayout.setVerticalGroup(
-            access_login_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(access_login_panelLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(access_login_lbl)
-                .addGap(18, 18, 18)
-                .addComponent(login_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(login_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(login_checkB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(register_toRegister)
-                .addGap(18, 18, 18)
-                .addComponent(login_enterBtn)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(login_enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        jPanel5.add(jPanel8);
+
+        access_login_panel.add(jPanel5);
 
         access_tabpane.addTab("Login", access_login_panel);
 
-        access_register_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        access_register_lbl.setText("Register");
+        access_register_panel.setBackground(new java.awt.Color(17, 45, 78));
+        access_register_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 35));
 
+        jPanel1.setBackground(new java.awt.Color(249, 247, 247));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel9.setBackground(new java.awt.Color(219, 226, 239));
+        jPanel9.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        access_login_lbl1.setFont(new java.awt.Font("Arial Black", 0, 30)); // NOI18N
+        access_login_lbl1.setForeground(new java.awt.Color(0, 0, 0));
+        access_login_lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        access_login_lbl1.setText("REGISTER");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(access_login_lbl1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGap(0, 3, Short.MAX_VALUE)
+                    .addComponent(access_login_lbl1)
+                    .addGap(0, 4, Short.MAX_VALUE)))
+        );
+
+        jPanel1.add(jPanel9);
+
+        jPanel10.setBackground(new java.awt.Color(249, 247, 247));
+        jPanel10.setPreferredSize(new java.awt.Dimension(300, 150));
+        jPanel10.setRequestFocusEnabled(false);
+
+        jPanel2.setBackground(new java.awt.Color(249, 247, 247));
+        jPanel2.setLayout(new java.awt.GridLayout(3, 0, 0, 10));
+
+        register_usernameF.setBackground(new java.awt.Color(219, 226, 239));
+        register_usernameF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        register_usernameF.setForeground(new java.awt.Color(0, 0, 0));
+        register_usernameF.setText("Username");
+        register_usernameF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_usernameFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_usernameFFocusLost(evt);
+            }
+        });
+        jPanel2.add(register_usernameF);
+
+        register_passwordF.setBackground(new java.awt.Color(219, 226, 239));
+        register_passwordF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        register_passwordF.setForeground(new java.awt.Color(0, 0, 0));
+        register_passwordF.setText("Password");
+        register_passwordF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_passwordFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_passwordFFocusLost(evt);
+            }
+        });
         register_passwordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 register_passwordFActionPerformed(evt);
             }
         });
+        jPanel2.add(register_passwordF);
 
-        register_enterBtn.setText("Enter");
-        register_enterBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_enterBtnActionPerformed(evt);
+        register_confirmPasswordF.setBackground(new java.awt.Color(219, 226, 239));
+        register_confirmPasswordF.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        register_confirmPasswordF.setForeground(new java.awt.Color(0, 0, 0));
+        register_confirmPasswordF.setText("Confirm Password");
+        register_confirmPasswordF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_confirmPasswordFFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_confirmPasswordFFocusLost(evt);
             }
         });
-
         register_confirmPasswordF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 register_confirmPasswordFActionPerformed(evt);
             }
         });
+        jPanel2.add(register_confirmPasswordF);
 
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel10);
+
+        jPanel11.setBackground(new java.awt.Color(249, 247, 247));
+
+        register_checkB.setForeground(new java.awt.Color(63, 114, 175));
         register_checkB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         register_checkB.setLabel("Show Password");
         register_checkB.addActionListener(new java.awt.event.ActionListener() {
@@ -162,80 +372,60 @@ public class Access extends javax.swing.JFrame {
             }
         });
 
-        access_register_toLogin.setText("Already have an Account? Click HERE to Log-in");
-        access_register_toLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                access_register_toLoginMouseClicked(evt);
+        register_enterBtn.setBackground(new java.awt.Color(63, 114, 175));
+        register_enterBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        register_enterBtn.setForeground(new java.awt.Color(255, 255, 255));
+        register_enterBtn.setText("ENTER");
+        register_enterBtn.setPreferredSize(new java.awt.Dimension(76, 27));
+        register_enterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register_enterBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout access_register_panelLayout = new javax.swing.GroupLayout(access_register_panel);
-        access_register_panel.setLayout(access_register_panelLayout);
-        access_register_panelLayout.setHorizontalGroup(
-            access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(access_register_panelLayout.createSequentialGroup()
-                .addGroup(access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(access_register_panelLayout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addComponent(access_register_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(access_register_panelLayout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addGroup(access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(access_register_panelLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(access_register_toLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(access_register_panelLayout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(register_enterBtn))
-                    .addGroup(access_register_panelLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(register_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+        jButton1.setBackground(new java.awt.Color(249, 247, 247));
+        jButton1.setForeground(new java.awt.Color(63, 114, 175));
+        jButton1.setText("Already have an Account? Click here");
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(register_checkB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(register_enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
-        access_register_panelLayout.setVerticalGroup(
-            access_register_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(access_register_panelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(access_register_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(register_usernameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(register_passwordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addComponent(register_checkB)
-                .addGap(18, 18, 18)
-                .addComponent(access_register_toLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(register_enterBtn)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(register_enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
+
+        jPanel1.add(jPanel11);
+
+        access_register_panel.add(jPanel1);
 
         access_tabpane.addTab("Register", access_register_panel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(access_tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(access_tabpane, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(access_tabpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void access_register_toLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_access_register_toLoginMouseClicked
-        updateAccessState();
-    }//GEN-LAST:event_access_register_toLoginMouseClicked
 
     private void register_confirmPasswordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_confirmPasswordFActionPerformed
         // TODO add your handling code here:
@@ -275,10 +465,6 @@ public class Access extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_register_passwordFActionPerformed
 
-    private void register_toRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_toRegisterMouseClicked
-        updateAccessState();
-    }//GEN-LAST:event_register_toRegisterMouseClicked
-
     private void login_enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_enterBtnActionPerformed
         int id = db.login(login_usernameF.getText(), login_passwordF.getText());
         int archived = Integer.parseInt(String.valueOf(db.getUserData(id, "users" ,"archived")));
@@ -304,6 +490,54 @@ public class Access extends javax.swing.JFrame {
         fnc.passwordFieldBehavior(register_confirmPasswordF, register_checkB);
         
     }//GEN-LAST:event_register_checkBActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        updateAccessState();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        updateAccessState();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void login_usernameFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_usernameFFocusGained
+        fnc.tfFocusGain(login_usernameF, "Username");
+    }//GEN-LAST:event_login_usernameFFocusGained
+
+    private void login_passwordFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_passwordFFocusGained
+        fnc.pfFocusGain(login_passwordF, "Password");
+    }//GEN-LAST:event_login_passwordFFocusGained
+
+    private void login_usernameFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_usernameFFocusLost
+       fnc.tfFocusLost(login_usernameF, "Username");
+    }//GEN-LAST:event_login_usernameFFocusLost
+
+    private void login_passwordFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_passwordFFocusLost
+        fnc.pfFocusLost(login_passwordF, "Password");
+    }//GEN-LAST:event_login_passwordFFocusLost
+
+    private void register_usernameFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_usernameFFocusGained
+        fnc.tfFocusGain(register_usernameF, "Username");
+    }//GEN-LAST:event_register_usernameFFocusGained
+
+    private void register_usernameFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_usernameFFocusLost
+        fnc.tfFocusLost(register_usernameF, "Username");
+    }//GEN-LAST:event_register_usernameFFocusLost
+
+    private void register_passwordFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_passwordFFocusGained
+         fnc.pfFocusGain(register_passwordF, "Password");
+    }//GEN-LAST:event_register_passwordFFocusGained
+
+    private void register_passwordFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_passwordFFocusLost
+        fnc.pfFocusLost(register_passwordF, "Password");
+    }//GEN-LAST:event_register_passwordFFocusLost
+
+    private void register_confirmPasswordFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_confirmPasswordFFocusGained
+        fnc.pfFocusGain(register_confirmPasswordF, "Confirm Password");
+    }//GEN-LAST:event_register_confirmPasswordFFocusGained
+
+    private void register_confirmPasswordFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_confirmPasswordFFocusLost
+        fnc.pfFocusLost(register_confirmPasswordF, "Confirm Password");
+    }//GEN-LAST:event_register_confirmPasswordFFocusLost
 
     private void updateAccessState(){
         isLogin = !isLogin;
@@ -352,11 +586,23 @@ public class Access extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel access_login_lbl;
+    private javax.swing.JLabel access_login_lbl1;
     private javax.swing.JPanel access_login_panel;
-    private javax.swing.JLabel access_register_lbl;
     private javax.swing.JPanel access_register_panel;
-    private javax.swing.JLabel access_register_toLogin;
     private javax.swing.JTabbedPane access_tabpane;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JCheckBox login_checkB;
     private javax.swing.JButton login_enterBtn;
     private javax.swing.JPasswordField login_passwordF;
@@ -365,7 +611,6 @@ public class Access extends javax.swing.JFrame {
     private javax.swing.JPasswordField register_confirmPasswordF;
     private javax.swing.JButton register_enterBtn;
     private javax.swing.JPasswordField register_passwordF;
-    private javax.swing.JLabel register_toRegister;
     private javax.swing.JTextField register_usernameF;
     // End of variables declaration//GEN-END:variables
 }

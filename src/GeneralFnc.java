@@ -2,6 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import java.awt.Color;
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +16,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -172,6 +175,55 @@ public class GeneralFnc {
         }
         else{
             pf.setEchoChar((char)'*');
+        }
+    }
+    
+    /*
+    BUTTON PLACEHOLDERS
+    */
+    
+    public void addPlaceHolderStyle(JTextField tf){
+        Font font = tf.getFont();
+        font = font.deriveFont(Font.ITALIC);
+        tf.setFont(font);
+        tf.setForeground(Color.DARK_GRAY);
+    
+    }
+    
+     public void removePlaceHolderStyle(JTextField tf){
+        Font font = tf.getFont();
+        font = font.deriveFont(Font.PLAIN | Font.BOLD);
+        tf.setFont(font);
+        tf.setForeground(Color.BLACK);
+    
+    }
+     
+    public void tfFocusGain(JTextField tf, String text){
+        if(tf.getText().equals(text)){
+            tf.setText(null);
+            tf.requestFocus();
+            removePlaceHolderStyle(tf);
+        }
+    }
+    public void pfFocusGain(JPasswordField pf, String text){
+        if(pf.getText().equals("Password")){
+            pf.setText(null);
+            pf.requestFocus();
+            pf.setEchoChar('*');
+            removePlaceHolderStyle(pf);
+        }
+    }
+    public void tfFocusLost(JTextField tf, String text){
+         if(tf.getText().isBlank() || tf.getText().isEmpty()){
+            addPlaceHolderStyle(tf);
+            tf.setText(text);
+        }
+    }
+    public void pfFocusLost(JPasswordField pf, String text){
+        if(pf.getText().isBlank() || pf.getText().isEmpty()){
+           addPlaceHolderStyle(pf);
+           pf.setText(text);
+           pf.setEchoChar('\u0000');
         }
     }
 }

@@ -89,7 +89,6 @@ public class db_connection {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             return 0;
         }
         return 0;
@@ -106,7 +105,6 @@ public class db_connection {
                 return true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             return true;
         }
     }
@@ -122,14 +120,12 @@ public class db_connection {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             return 0;
         }
         return 0;
     }
     
     public void addToDb(int userID, String table, String column, String value){
-        String formattedDateTime = fnc.getCurrentDateTime();
         
          try (Connection connection = DriverManager.getConnection(url, user, pw)) {
             String sql = "INSERT INTO `"+table+"`("+column+") VALUES ('"+value+"')";
@@ -137,18 +133,13 @@ public class db_connection {
                 int rowsInserted = statement.executeUpdate(sql);
                 if (rowsInserted > 0) {
                     System.out.println("A new row has been inserted successfully.");
-                    return;
                 }
-                return;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return;
         }    
     }
     
     public void updateDb(int userID, String table, String column, String value){
-        String formattedDateTime = fnc.getCurrentDateTime();
         
          try (Connection connection = DriverManager.getConnection(url, user, pw)) {
             String sql = "UPDATE "+table+" SET "+column+" = '"+value+"' WHERE userID="+userID;;
@@ -156,7 +147,6 @@ public class db_connection {
             int rowsUpdated = statement.executeUpdate(sql);
             if (rowsUpdated > 0) {
                 System.out.println("Row/s has been upadted successfully.");
-                return;
             }
         } catch (SQLException e) {
         }    
@@ -177,13 +167,9 @@ public class db_connection {
                 int rowsInserted = statement.executeUpdate(sql);
                 if (rowsInserted > 0) {
                     System.out.println("A new row has been inserted successfully.");
-                    return;
                 }
-                return;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return;
         }    
     }
     
@@ -225,10 +211,8 @@ public class db_connection {
                 return model;
                 }
             catch (SQLException e) {
-                e.printStackTrace();
             }
         }catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -266,10 +250,8 @@ public class db_connection {
                 return model;
                 }
             catch (SQLException e) {
-                e.printStackTrace();
             }
         }catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
