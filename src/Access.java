@@ -21,8 +21,7 @@ public class Access extends javax.swing.JFrame {
      */
     public Access() {
         initComponents();
-        
-        System.out.println("Hellow World");
+        db.testConnection();
     }
 
     /**

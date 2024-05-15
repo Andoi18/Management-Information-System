@@ -10,14 +10,16 @@ import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Drew
  */
 public class GeneralFnc {
-    
-    
     
     public String generateRandomID(int length, String startingNum) {
         if (length <= 1) {
@@ -128,4 +130,24 @@ public class GeneralFnc {
         }
         return result.toString();
     }
+    
+    public void filterMyLogsRows(JTable table, Object valueToSearch, String searchFrom) {
+
+        // Create a RowFilter to filter rows based on the search criteria
+        RowFilter<Object, Object> rowFilter = new RowFilter<Object, Object>() {
+            @Override
+            public boolean include(Entry<? extends Object, ? extends Object> entry) {
+                // Get the value from the specified column
+                String value = entry.getValue(table.getColumnModel().getColumnIndex(searchFrom)).toString();
+                // Check if the value matches the search criteria
+                return value != null && value.contains(valueToSearch.toString());
+            }
+        };
+
+        // Apply the RowFilter to the TableRowSorter
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+        sorter.setRowFilter(rowFilter);
+        table.setRowSorter(sorter);
+    }
+
 }
