@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
@@ -140,7 +143,7 @@ public class GeneralFnc {
                 // Get the value from the specified column
                 String value = entry.getValue(table.getColumnModel().getColumnIndex(searchFrom)).toString();
                 // Check if the value matches the search criteria
-                return value != null && value.contains(valueToSearch.toString());
+                return value != null && value.toLowerCase().contains(valueToSearch.toString().toLowerCase());
             }
         };
 
@@ -149,5 +152,26 @@ public class GeneralFnc {
         sorter.setRowFilter(rowFilter);
         table.setRowSorter(sorter);
     }
-
+    
+    public boolean getConfirmation(String description, String title){
+        int result = JOptionPane.showConfirmDialog(null ,description, title,
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.YES_OPTION){
+           return true;
+        }else if (result == JOptionPane.NO_OPTION){
+           return false;
+        }else {
+           return false;
+        }
+    }
+    
+    public void passwordFieldBehavior(JPasswordField pf, JCheckBox cb){
+        if(cb.isSelected()){
+            pf.setEchoChar((char)0);
+        }
+        else{
+            pf.setEchoChar((char)'*');
+        }
+    }
 }

@@ -15,13 +15,14 @@ public class Access extends javax.swing.JFrame {
 
     private boolean isLogin = true;
     db_connection db = new db_connection();
+    GeneralFnc fnc = new GeneralFnc();
     
     /**
      * Creates new form Access
      */
     public Access() {
         initComponents();
-        db.testConnection();
+        //db.testConnection();
     }
 
     /**
@@ -47,7 +48,7 @@ public class Access extends javax.swing.JFrame {
         register_usernameF = new javax.swing.JTextField();
         register_enterBtn = new javax.swing.JButton();
         register_confirmPasswordF = new javax.swing.JPasswordField();
-        access_register_checkB1 = new javax.swing.JCheckBox();
+        register_checkB = new javax.swing.JCheckBox();
         access_register_toLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,6 +73,11 @@ public class Access extends javax.swing.JFrame {
 
         login_checkB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         login_checkB.setLabel("Show Password");
+        login_checkB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_checkBActionPerformed(evt);
+            }
+        });
 
         register_toRegister.setText("Dont have an Account? Click HERE to Register");
         register_toRegister.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,8 +154,13 @@ public class Access extends javax.swing.JFrame {
             }
         });
 
-        access_register_checkB1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        access_register_checkB1.setLabel("Show Password");
+        register_checkB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        register_checkB.setLabel("Show Password");
+        register_checkB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register_checkBActionPerformed(evt);
+            }
+        });
 
         access_register_toLogin.setText("Already have an Account? Click HERE to Log-in");
         access_register_toLogin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -181,7 +192,7 @@ public class Access extends javax.swing.JFrame {
                         .addComponent(register_enterBtn))
                     .addGroup(access_register_panelLayout.createSequentialGroup()
                         .addGap(161, 161, 161)
-                        .addComponent(access_register_checkB1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(register_checkB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         access_register_panelLayout.setVerticalGroup(
@@ -196,7 +207,7 @@ public class Access extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(register_confirmPasswordF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(access_register_checkB1)
+                .addComponent(register_checkB)
                 .addGap(18, 18, 18)
                 .addComponent(access_register_toLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -271,7 +282,7 @@ public class Access extends javax.swing.JFrame {
     private void login_enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_enterBtnActionPerformed
         int id = db.login(login_usernameF.getText(), login_passwordF.getText());
         int archived = Integer.parseInt(String.valueOf(db.getUserData(id, "users" ,"archived")));
-        if(id != 0 && archived != 0){
+        if(id != 0 && archived == 0){
             new Main_Dashboard(id).setVisible(true);
             this.dispose();
         }
@@ -283,6 +294,16 @@ public class Access extends javax.swing.JFrame {
     private void login_passwordFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_passwordFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_login_passwordFActionPerformed
+
+    private void login_checkBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_checkBActionPerformed
+        fnc.passwordFieldBehavior(login_passwordF, login_checkB);
+    }//GEN-LAST:event_login_checkBActionPerformed
+
+    private void register_checkBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_checkBActionPerformed
+        fnc.passwordFieldBehavior(register_passwordF, register_checkB);
+        fnc.passwordFieldBehavior(register_confirmPasswordF, register_checkB);
+        
+    }//GEN-LAST:event_register_checkBActionPerformed
 
     private void updateAccessState(){
         isLogin = !isLogin;
@@ -332,7 +353,6 @@ public class Access extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel access_login_lbl;
     private javax.swing.JPanel access_login_panel;
-    private javax.swing.JCheckBox access_register_checkB1;
     private javax.swing.JLabel access_register_lbl;
     private javax.swing.JPanel access_register_panel;
     private javax.swing.JLabel access_register_toLogin;
@@ -341,6 +361,7 @@ public class Access extends javax.swing.JFrame {
     private javax.swing.JButton login_enterBtn;
     private javax.swing.JPasswordField login_passwordF;
     private javax.swing.JTextField login_usernameF;
+    private javax.swing.JCheckBox register_checkB;
     private javax.swing.JPasswordField register_confirmPasswordF;
     private javax.swing.JButton register_enterBtn;
     private javax.swing.JPasswordField register_passwordF;

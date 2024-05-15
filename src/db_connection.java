@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
  */
 import java.sql.*;
-import static java.util.Collections.emptyList;
 import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -39,7 +38,6 @@ public class db_connection {
         }
         catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, "An error occured", "Error", JOptionPane.INFORMATION_MESSAGE);
-            ex.printStackTrace();
 
         }
     }
@@ -69,7 +67,6 @@ public class db_connection {
                 return "0";
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             return "0";
         }    
     }
@@ -161,10 +158,7 @@ public class db_connection {
                 System.out.println("Row/s has been upadted successfully.");
                 return;
             }
-            return;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return;
         }    
     }
     
@@ -197,12 +191,53 @@ public class db_connection {
         DefaultTableModel model = new DefaultTableModel();
         String query;
         try (Connection connection = DriverManager.getConnection(url, user, pw)) {
-            if(isAdmin){
+            if(!isAdmin){
                 query = "SELECT * FROM `logs` WHERE " + column + " = '" + input +"'";
             }
             else{
-                query = "SELECT `logID`,`type`, `message`, `dateTime` FROM `logs` WHERE "+ column + " = '" + input +"'";
+                query = "SELECT `logID`,`type`, `message`, `dateTime` FROM `logs`";
             }
+            
+            
+            try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)){
+                // Get metadata
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+
+                // Create column names vector
+                Vector<String> columnNames = new Vector<>();
+                for (int col = 1; col <= columnCount; col++) {
+                    columnNames.add(metaData.getColumnName(col));                   
+                }
+
+                // Create data vector
+                Vector<Vector<Object>> data = new Vector<>();
+                while (rs.next()) {
+                    Vector<Object> vector = new Vector<>();
+                    for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                        vector.add(rs.getObject(columnIndex));
+                    }
+                    data.add(vector);
+                }
+
+                // Create table model
+                model = new DefaultTableModel(data, columnNames);
+                return model;
+                }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public DefaultTableModel getStatusModel(){
+        DefaultTableModel model = new DefaultTableModel();
+        String query;
+        try (Connection connection = DriverManager.getConnection(url, user, pw)) {
+            query = "SELECT `userID`, `username` , `archived`, `active`, `datetimeCreated`, `accSetup`, `availability`, `statusMessage` FROM `users` WHERE 1";
             
             
             try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)){
